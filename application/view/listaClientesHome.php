@@ -6,9 +6,6 @@
 $rol = $_SESSION['rol'];
 $idUsuario=$data;
 
-$cliente = new Model_Cliente();
-
-$opciones = $cliente->listaClientesParaBuscador();
 
 ?>
 	
@@ -25,17 +22,6 @@ $opciones = $cliente->listaClientesParaBuscador();
     <script type="text/javascript" src="jquery-ui.js"></script>
     <link rel="stylesheet" href="jquery-ui.css">
     
-    <script type="text/javascript">
-    <script>
-    $( function() {
-
-      var availableTags = [<?php echo $opciones ?>];
-         $( “#buscador” ).autocomplete({
-         source: availableTags
-         });
-     } );
-
-    </script>
     <!-- Bootstrap Styles-->
     <link href="../application/resources/css/bootstrap.css" rel="stylesheet" />
     <!-- FontAwesome Styles-->
