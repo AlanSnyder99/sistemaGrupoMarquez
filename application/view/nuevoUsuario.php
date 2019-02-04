@@ -60,39 +60,41 @@ $rol2 = $usuario->listaRoles();
 
 
         <!--/. NAV TOP  -->
-        <nav class="navbar-default navbar-side" role="navigation">
+         <nav class="navbar-default navbar-side" role="navigation">
             <div class="sidebar-collapse">
                 <ul class="nav" id="main-menu">
 
                     <li>
-                    	<a href="#"><i class="glyphicon glyphicon-plus"></i> Clientes</a>
-                    	<ul class="nav nav-second-level">
-                    		<li>
-                    			<a class="active-menu" href="<?php echo "../cliente/listaClientesVacia?idUsuario=".$idUsuario."" ?>"><i></i>Lista Clientes</a>
-                    		</li>
-                    		<li>
-                    			<a class="active-menu" href="<?php echo "../administrador/index?idUsuario=".$idUsuario."" ?>"><i></i>Cargar Cliente</a>
-                    		</li>
-                    	</ul>  
+                        <a href="#"><i class="glyphicon glyphicon-plus"></i>Fraudes</a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a class="active-menu" href="<?php echo "../cliente/listaClientesVacia?idUsuario=".$idUsuario."" ?>"><i class='glyphicon glyphicon-th-list'></i>Lista Fraudes</a>
+                            </li>
+                            <li>
+                                <a class="active-menu" href="<?php echo "../administrador/index?idUsuario=".$idUsuario."" ?>"><i class='glyphicon glyphicon-pencil'></i>Cargar Fraudes</a>
+                            </li>
+                        </ul>  
                     </li>
-         	
-                  <?php 
-                  if($rol=='Administrador'){
+            
+                
+                <?php
+                if($rol=='Administrador'){
                     echo "<li>";
-                    echo " <a href='../administrador/verUsuarios?idUsuario=".$idUsuario."'><i class='glyphicon glyphicon-user'></i> Usuarios</a> ";
+                    echo "  <a href='#''><i class='glyphicon glyphicon-plus'></i> Administrador</a>
+                        <ul class='nav nav-second-level'> <li>
+                            <a class='active-menu' href='../administrador/verUsuarios?idUsuario=".$idUsuario."'><i class='glyphicon glyphicon-user'></i> Usuarios</a></li> </ul>  ";
                 
                     echo "</li>";
                 }elseif ($rol=='Operador') {
                     
                 }
-                    ?>
-                
+                  ?>
 
- </li>
+
                 </ul>
             </div>
-
         </nav>
+        
         <div id="page-wrapper">
             <!-- /. PAGE INNER  -->
 

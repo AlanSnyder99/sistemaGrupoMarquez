@@ -90,8 +90,8 @@ $idUsuario=$data;
 
                 </ul>
             </div>
-
         </nav>
+        
         <div id="page-wrapper">
             <!-- /. PAGE INNER  -->
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
