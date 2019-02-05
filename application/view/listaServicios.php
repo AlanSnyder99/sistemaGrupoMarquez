@@ -5,11 +5,10 @@
       header("location:/login");
   }
 
+
 $rol = $_SESSION['rol'];
 
 $usuario = new Model_Usuario();
-
-$tarjetas = $usuario->listaTarjetas();
 
 $idUsuario=$data;
 
@@ -67,14 +66,30 @@ $idUsuario=$data;
                         <a href="#"><i class="glyphicon glyphicon-plus"></i>Fraudes</a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a class="active-menu" href="<?php echo "../cliente/listaClientesVacia?idUsuario=".$idUsuario."" ?>"><i class='glyphicon glyphicon-th-list'></i>Lista Fraudes</a>
+                                <a class="active-menu" href="<?php echo "../cliente/listaClientesVacia?idUsuario=".$idUsuario."" ?>"><i class='glyphicon glyphicon-align-justify'></i>Lista Fraudes</a>
                             </li>
                             <li>
                                 <a class="active-menu" href="<?php echo "../administrador/index?idUsuario=".$idUsuario."" ?>"><i class='glyphicon glyphicon-pencil'></i>Cargar Fraudes</a>
                             </li>
                         </ul>  
                     </li>
-            
+                
+                <li>
+                        <a href="#"><i class="glyphicon glyphicon-plus"></i>Servicios</a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a class="active-menu" href="<?php echo "../administrador/listaServiciosVacia?idUsuario=".$idUsuario."" ?>"><i class='glyphicon glyphicon-th-list'></i>Lista Servicios</a>
+                            </li>
+                    <?php
+                        if($rol=='Administrador'){
+                    echo "<li>";
+                    echo "<a class='active-menu' href='../administrador/nuevoServicio?idUsuario=".$idUsuario."'><i class='glyphicon glyphicon-pencil'></i>Cargar Servicio</a>";
+                    echo "</li>";    
+                    }
+                    ?>
+                           
+                        </ul>  
+                    </li>
                 
                 <?php
                 if($rol=='Administrador'){
@@ -96,23 +111,24 @@ $idUsuario=$data;
 
         <div id="page-wrapper">
             <!-- /. PAGE INNER  -->
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-    <form class="form-inline" method="POST" action=<?php echo "'../administrador/verUsuarioBuscado?idUsuario=".$idUsuario."'" ?>">
-            <label>Buscar por Nombre de Usuario</label>
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <form class="form-inline" method="POST" action="<?php echo "../administrador/verUsuarioBuscado?idUsuario=".$idUsuario."" ?>">
+            <label>Buscar por Nombre de Servicio</label>
             <input class="form-control mr-sm-2" type="text" name="nombre">
-             <input  type="submit" name="submit" id="submit" value="Buscar"> 
-              <br> <br>
-        <a href="<?php echo "../administrador/nuevoUsuario?idUsuario=".$idUsuario."" ?>" class="btn btn-primary" role="button">Nuevo usuario</a>   
+             <input  type="submit" name="submit" id="submit" value="Buscar">    
         </form>
-    </nav>
+        <br>
+    
+</nav>
+
             <br>
-            <h1>Usuarios</h1>
+            <h1>Servicios</h1>
             <br>
 <?php
                 if(mysqli_num_rows($data2) >= 1){
-                    while($usuarios = mysqli_fetch_assoc($data2)){
+                    while($servicios = mysqli_fetch_assoc($data2)){
                         echo "<ul class='list-group list-group-flush'>
-  <li class='list-group-item'>idUsuario: ".$usuarios['idUsuario']." <br> Nombre Usuario:  ".$usuarios['nombreUsuario']."<br><a class='btn btn-info' role='button'  href='../administrador/modificarUsuario?idUsuario=".$idUsuario."&usuario=".$usuarios['idUsuario']." ' >Modificar</a> </li
+  <li class='list-group-item'>idServicio: ".$servicios['idServicios']." <br> Nombre:  ".$servicios['nombre']."<br><a class='btn btn-info' role='button'  href='../administrador/modificarUsuario?idUsuario=".$idUsuario."&usuario=".$servicios['idServicios']." ' >Ver</a> </li
 </ul>
 <br>
 

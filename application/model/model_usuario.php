@@ -1,7 +1,6 @@
 <?php
 
-class Model_Usuario extends Model
-{
+class Model_Usuario extends Model{
     private $db;
     private $usuario;
     private $clave;
@@ -11,6 +10,24 @@ class Model_Usuario extends Model
         require_once 'modelo_conexion_base_de_datos.php';
         $db=BaseDeDatos::conectarBD();
     }
+
+    public function validarNombre($nombreUsuario){
+
+     $permitidos = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";     
+      
+     if (strlen($nombreUsuario)<3 || strlen($nombreUsuario)>20){ 
+            return false; 
+    } else{
+        for ($i=0; $i<strlen($nombreUsuario); $i++){ 
+                  if (strpos($permitidos, substr($$nombreUsuario,$i,1))===false){ 
+                  return false; 
+                 } else{
+                    return true; 
+                 }
+            }   
+    }
+
+}
 
     public function validarlogin($nombreUsuario, $clave)
     {
@@ -125,6 +142,19 @@ class Model_Usuario extends Model
 
         return $result;
     }
+
+
+    public function listaMarcas(){
+
+        $db=BaseDeDatos::conectarBD();
+
+        $sql='select * from Marcas where idMarcas is not null order by nombre;';
+
+        $result=mysqli_query($db, $sql);
+
+        return $result;
+    }
+
 
     public function listaIntegrantes(){
         

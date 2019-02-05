@@ -65,14 +65,30 @@ $idUsuario=$data;
                         <a href="#"><i class="glyphicon glyphicon-plus"></i>Fraudes</a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a class="active-menu" href="<?php echo "../cliente/listaClientesVacia?idUsuario=".$idUsuario."" ?>"><i class='glyphicon glyphicon-th-list'></i>Lista Fraudes</a>
+                                <a class="active-menu" href="<?php echo "../cliente/listaClientesVacia?idUsuario=".$idUsuario."" ?>"><i class='glyphicon glyphicon-align-justify'></i>Lista Fraudes</a>
                             </li>
                             <li>
                                 <a class="active-menu" href="<?php echo "../administrador/index?idUsuario=".$idUsuario."" ?>"><i class='glyphicon glyphicon-pencil'></i>Cargar Fraudes</a>
                             </li>
                         </ul>  
                     </li>
-            
+                
+                <li>
+                        <a href="#"><i class="glyphicon glyphicon-plus"></i>Servicios</a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a class="active-menu" href="<?php echo "../administrador/listaServiciosVacia?idUsuario=".$idUsuario."" ?>"><i class='glyphicon glyphicon-th-list'></i>Lista Servicios</a>
+                            </li>
+                    <?php
+                        if($rol=='Administrador'){
+                    echo "<li>";
+                    echo "<a class='active-menu' href='../administrador/nuevoServicio?idUsuario=".$idUsuario."'><i class='glyphicon glyphicon-pencil'></i>Cargar Servicio</a>";
+                    echo "</li>";    
+                    }
+                    ?>
+                           
+                        </ul>  
+                    </li>
                 
                 <?php
                 if($rol=='Administrador'){

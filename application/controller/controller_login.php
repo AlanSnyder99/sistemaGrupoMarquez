@@ -15,7 +15,9 @@ class Controller_Login extends Controller{
         $clave = md5($_POST['clave']);
 		$rol =  $usuario->validarlogin($nombreUsuario,$clave);
 		$_SESSION['rol'] = $rol;
-		switch ($rol){
+		
+
+			switch ($rol){
 			case "Administrador":
 				$_SESSION["login"]="sessionAdmin";
 				$idUsuario = $usuario->buscarIdUsuario($nombreUsuario);
@@ -32,8 +34,13 @@ class Controller_Login extends Controller{
 				$_SESSION["login"]="sessionOperador2";
 				header("location: /delivery/index");
 				break;
-		}
-    }
+					}
+
+
+                 	
+       
+           
+}
 
     function cerrarsesion(){
 		session_destroy();

@@ -92,6 +92,32 @@ PRIMARY KEY (`idUsuario`),
 ENGINE = InnoDB;
 
 -- -----------------------------------------------------
+-- Table `GmDb`.`Marcas`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `GmDb`.`Marcas` (
+  `idMarcas` INT NOT NULL AUTO_INCREMENT,
+  `nombre` VARCHAR(45) NULL,
+PRIMARY KEY (`idMarcas`)
+ )
+ENGINE = InnoDB;
+
+-- -----------------------------------------------------
+-- Table `GmDb`.`Servicios`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `GmDb`.`Servicios` (
+  `idServicios` INT NOT NULL AUTO_INCREMENT,
+  `nombre` VARCHAR(45) NULL,
+  `domicilio` VARCHAR(150) NULL,
+  `telefono` INT NULL,
+  `horarioDeAtencion` VARCHAR(150) NULL,
+  `email` VARCHAR(150) NULL,
+  `marcas` VARCHAR(150) NOT NULL,
+  
+PRIMARY KEY (`idServicios`)
+ )
+ENGINE = InnoDB;
+
+-- -----------------------------------------------------
 -- Table `GmDb`.`Tarjetas`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `GmDb`.`Tarjetas` (
@@ -100,6 +126,7 @@ CREATE TABLE IF NOT EXISTS `GmDb`.`Tarjetas` (
   PRIMARY KEY (`idTarjetas`)
 )
 ENGINE = InnoDB
+
 
 DEFAULT CHARACTER SET = utf8;
 
@@ -113,6 +140,10 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 insert into Rol 
 values
 (1,'Administrador'),(2,'Operador'),(3,'Operador2');
+
+insert into Marcas 
+values
+(1,'Samsung'),(2,'Hp'),(3,'Lenovo'),(4,'Sommier center');
 
 insert into Integrantes 
 values

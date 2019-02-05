@@ -2,6 +2,7 @@
 
 include 'application/model/model_usuario.php';
 include 'application/model/model_cliente.php';
+include 'application/model/model_servicios.php';
 
 class Controller_Administrador extends Controller
 {
@@ -155,7 +156,7 @@ public function grabarModificacionCliente(){
 
             if ($dni != $dni2) {
                 
-                $usuario->modificarDniCliente($dni,$idCliente);
+                $cliente->modificarDniCliente($dni,$idCliente);
                 
                 if ($producto != $producto2) {
                     
@@ -269,10 +270,50 @@ public function grabarModificacionCliente(){
              alert("Usuario guardado con exito");
              </script>'; 
         }
-
-      
     }
 
-  
+ public function nuevoServicio(){
+        $idUsuario = $_GET['idUsuario'];
+        $this->view->generateSt('nuevoServicio.php',$idUsuario); 
+    }   
+ 
+     public function guardarServicio(){
+
+        $servicios = new Model_Servicios();
+        $nombreServicio = $_POST['nombre'];
+        $domicilio = $_POST['domicilio'];
+        $telefono = $_POST['telefono'];
+        $horarioDeAtencion = $_POST['horario'];
+        $email = $_POST['email'];
+        $marcasArray = $_POST['marcas'];
+        $marcas = implode(", ", $marcasArray);
+//      $idMarcas = preg_replace("/[^0-9]{1,4}/", '', $marcas); //EXTRAE EL NUMERO DEL STRING DE MARCAS
+        $idUsuario = $_POST['idUsuario'];
+        
+           if(!$servicios->validarSiExisteServicio($nombreServicio)){
+           
+             $this->view->generateSt('nuevoServicio.php',$idUsuario);
+            echo'<script type="text/javascript">
+             alert("El servicio ya existe");
+             </script>';
+            }else{
+
+            $servicios->guardarServicio($nombreServicio,$domicilio,$telefono,$horarioDeAtencion,$email,$marcas);
+            $this->view->generateSt('nuevoServicio.php',$idUsuario);
+          
+          echo'<script type="text/javascript">
+             alert("Servicio guardado con exito");
+             </script>'; 
+        }
+    
+    } 
+
+    function listaServiciosVacia(){
+
+        $servicio = new Model_Servicios();
+        $idUsuario = $_GET['idUsuario'];
+        $servicios = $servicio->listaServicios();
+        $this->view->generateSt('listaServicios.php',$idUsuario,$servicios);
+    }
 
 }
