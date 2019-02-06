@@ -316,4 +316,22 @@ public function grabarModificacionCliente(){
         $this->view->generateSt('listaServicios.php',$idUsuario,$servicios);
     }
 
+    function verServicio(){
+
+        $servicio = new Model_Servicios();
+        $idUsuario = $_GET['idUsuario'];
+        $servicioId = $_GET['servicioId'];
+        $verServicios = $servicio->servicioPorId($servicioId);
+        $this->view->generateSt('verServicio.php',$idUsuario,$verServicios);
+    }
+
+   public function verServicioBuscado(){
+
+        $idUsuario = $_GET['idUsuario'];
+        $servicio = new Model_Servicios();
+        $nombre = $_POST['nombre'];  
+        $servicios = $servicio->servicioBuscado($nombre);
+        $this->view->generateSt('listaServiciosBuscados.php',$idUsuario,$servicios); 
+    }
+    
 }

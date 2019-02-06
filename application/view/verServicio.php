@@ -1,10 +1,19 @@
 <?php
+
+
   if (!isset($_SESSION["login"])) {
       header("location:/login");
   }
 
+//ID DEL USUARIO QUE INGRESA AL SISTEMA
+$idUsuario=$data;
+
+//ROL DE LA SESSION
 $rol = $_SESSION['rol'];
-  $idUsuario=$data2;
+
+
+
+
 ?>
 	
 
@@ -20,14 +29,15 @@ $rol = $_SESSION['rol'];
     <!-- FontAwesome Styles-->
     <link href="../application/resources/css/font-awesome.css" rel="stylesheet" />
     
-    <link href="../application/resources/css/listaClientes.css" rel="stylesheet" />
-    
     <link href="../application/resources/css/custom-styles.css" rel="stylesheet" />
     <!-- Google Fonts-->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
 </head>
 
 <body>
+
+
+
     <div id="wrapper">
         <nav class="navbar navbar-default top-navbar" role="navigation">
             <div class="navbar-header">
@@ -48,8 +58,9 @@ $rol = $_SESSION['rol'];
                </ul>
         </nav>
 
+
         <!--/. NAV TOP  -->
-       <nav class="navbar-default navbar-side" role="navigation">
+         <nav class="navbar-default navbar-side" role="navigation">
             <div class="sidebar-collapse">
                 <ul class="nav" id="main-menu">
 
@@ -99,47 +110,68 @@ $rol = $_SESSION['rol'];
                 </ul>
             </div>
         </nav>
-
+ 
         
         <div id="page-wrapper">
             <!-- /. PAGE INNER  -->
-<div id="buscador">
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-       <form class="form-inline" method="POST" action=<?php echo "'../cliente/listaClientes?idUsuario=".$idUsuario."'" ?>">
-            <h3 class='text-center'>Buscar por DNI</h3>
-            <br>
-            <input class="form-control" type="number" id="inputs" name="dniBuscado">
-<br>
-            <h3 class='text-center'> Buscar por Nombre</h3>
-            <br>
-            <input class="form-control " type="text" id="inputs" name="nombreBuscado">
-           <br>
-             <input class="form-control " type="submit" name="submit" id="submit" value="Buscar">    
-        </form>
-    </nav>
-</div>
-<br>
-<h1 class='text-center'>Clientes</h1>
-<br><br>
 
-<div class="row">
-<?php
-                if(mysqli_num_rows($data) >= 1){
-                    while($clientes = mysqli_fetch_assoc($data)){
-                        echo "<ul class='list-group list-group-flush'>
-  <li class='list-group-item'>DNI: ".$clientes['dni']." <br> Nombre Cliente:  ".$clientes['nombreCompleto']."<br><a class='btn btn-info' role='button'  href='../administrador/verClienteParticular?idUsuario=".$idUsuario."&cliente=".$clientes['idClientes']." ' >Ver</a> </li
-</ul>
-<br>
 
-                        ";
-                    }
-                }
-                
-?>    
-</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="well well-sm">
+                <form class="form-horizontal" method="POST" enctype="multipart/form-data">
+                        <legend class="text-center header">Ver Servicio</legend>                  
 
+  <br>
+                        <div class="form-group">
+                            <span class="col-md-1 col-md-offset-2 text-center">Nombre</span>
+                            <div class="col-md-7">
+                                <input id="fname" name="nombre" type="text" class="form-control" value="<?php echo $data2['nombre']; ?>" readonly="readonly">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <span class="col-md-1 col-md-offset-2 text-center">Telefono</span>
+                            <div class="col-md-7">
+                                <input id="fname" name="telefono" type="text"  class="form-control" value="<?php echo $data2['telefono']; ?>" readonly="readonly">
+                            
+                            </div>
+                        </div>
+  <br>
+                         <div class="form-group">
+                            <span class="col-md-1 col-md-offset-2 text-center">Domicilio</span>
+                            <div class="col-md-7">
+                                <input id="fname" name="domicilio" type="text"  class="form-control" value="<?php echo $data2['domicilio']; ?>" readonly="readonly">
+                            
+                            </div>
+                        </div>
+                          <br>
+                         <div class="form-group">
+                            <span class="col-md-1 col-md-offset-2 text-center">Horario De Atencion</span>
+                            <div class="col-md-7">
+                                <input id="fname" name="horario" type="text"  class="form-control" value="<?php echo $data2['horarioDeAtencion']; ?>" readonly="readonly">
+                             
+                            </div>
+                        </div>
+ <br>
+                         <div class="form-group">
+                            <span class="col-md-1 col-md-offset-2 text-center">Marcas</span>
+                            <div class="col-md-7">
+                                <input id="fname" name="tarjeta" type="text"  class="form-control" value="<?php echo $data2['marcas']; ?>" readonly="readonly">
+                             
+                            </div>
+                        </div>
+                        
+  <br>
+                            
+
+                </form>
+            </div>
         </div>
-
+    </div>
+</div>
+        </div>
         <!-- /. PAGE WRAPPER  -->
     </div>
     <!-- /. WRAPPER  -->

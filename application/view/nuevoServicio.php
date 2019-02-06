@@ -81,12 +81,12 @@ $rol = $_SESSION['rol'];
                         <a href="#"><i class="glyphicon glyphicon-plus"></i>Servicios</a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a class="active-menu" href="<?php echo "../cliente/listaClientesVacia?idUsuario=".$idUsuario."" ?>"><i class='glyphicon glyphicon-th-list'></i>Lista Servicios</a>
+                                <a class="active-menu" href="<?php echo "../administrador/listaServiciosVacia?idUsuario=".$idUsuario."" ?>"><i class='glyphicon glyphicon-th-list'></i>Lista Servicios</a>
                             </li>
                     <?php
                         if($rol=='Administrador'){
                     echo "<li>";
-                    echo "<a class='active-menu' href='../administrador/index?idUsuario=".$idUsuario."'><i class='glyphicon glyphicon-pencil'></i>Cargar Servicio</a>";
+                    echo "<a class='active-menu' href='../administrador/nuevoServicio?idUsuario=".$idUsuario."'><i class='glyphicon glyphicon-pencil'></i>Cargar Servicio</a>";
                     echo "</li>";    
                     }
                     ?>
@@ -111,6 +111,7 @@ $rol = $_SESSION['rol'];
                 </ul>
             </div>
         </nav>
+
         
         <div id="page-wrapper">
             <!-- /. PAGE INNER  -->
@@ -137,7 +138,7 @@ $rol = $_SESSION['rol'];
                         <div class="form-group">
                             <span class="col-md-1 col-md-offset-2 text-center">Domicilio</span>
                             <div class="col-md-7">
-                                <input id="fname" name="domicilio" type="text" required="" placeholder="Domicilio" class="form-control">
+                                <input id="fname" name="domicilio" type="text" placeholder="Domicilio" class="form-control">
                             </div>
                         </div>
                         
@@ -152,7 +153,7 @@ $rol = $_SESSION['rol'];
                         <div class="form-group">
                             <span class="col-md-1 col-md-offset-2 text-center">Horario de Atencion</span>
                             <div class="col-md-7">
-                                <input id="fname" name="horario" type="text" required="" placeholder="Horario de atencion" class="form-control">
+                                <input id="fname" name="horario" type="text" placeholder="Horario de atencion" class="form-control">
                             </div>
                         </div>
 
@@ -161,18 +162,18 @@ $rol = $_SESSION['rol'];
                         <div class="form-group">
                             <span class="col-md-1 col-md-offset-2 text-center">Email</span>
                             <div class="col-md-7">
-                                <input id="fname" name="email" type="email" required="" placeholder="Email" class="form-control">
+                                <input id="fname" name="email" type="email" placeholder="Email" class="form-control">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <span class="col-md-1 col-md-offset-2 text-center">Marcas</span>
                             <div class="col-md-7">
-                                <select name="marcas[]" multiple>
+                                <select name="marcas[]" required="" multiple >
                                <?php if(mysqli_num_rows($marcas)>0){
                                      while($rows=mysqli_fetch_assoc($marcas)){
                                          echo "<option>";
-                                         echo $rows['idMarcas'].",".$rows['nombre'];
+                                         echo $rows['idMarcas']."-".$rows['nombre'];
                                          echo "</option>";
                                     }
                                  }  ?>

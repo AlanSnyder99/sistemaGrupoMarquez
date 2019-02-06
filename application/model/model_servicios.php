@@ -48,4 +48,28 @@ class Model_Servicios extends Model{
     return $result;  
     }
 
+     public function servicioPorId($servicioId){
+        
+        $db=BaseDeDatos::conectarBD();
+
+        $sql= 'select * from Servicios where idServicios = '.$servicioId.'; ';
+
+        $result=mysqli_query($db, $sql);
+
+        $rows= mysqli_fetch_assoc($result);
+
+        return $rows;
+    }
+
+    public function servicioBuscado($nombre){
+
+    $db=BaseDeDatos::conectarBD();
+
+    $sql='select * from Servicios where nombre like "%'.$nombre.'%" ;';
+
+    $result=mysqli_query($db, $sql);
+
+    return $result;    
+    }
+    
 }
