@@ -155,6 +155,17 @@ class Model_Usuario extends Model{
         return $result;
     }
 
+      public function listaServicios(){
+
+        $db=BaseDeDatos::conectarBD();
+
+        $sql='select * from Servicios where idServicios is not null order by nombre;';
+
+        $result=mysqli_query($db, $sql);
+
+        return $result;
+    }
+
 
     public function listaIntegrantes(){
         
@@ -210,6 +221,46 @@ class Model_Usuario extends Model{
 
     return $result;  
     }
+
+   public function guardarRecalmo($idServicio,$idMarca,$observacion,$fecha){
+
+     $db=BaseDeDatos::conectarBD();
+    
+     $sql='insert into Reclamos (Servicios_idServicios, Marcas_idMarcas, fecha, observacion) values ('.$idServicio.','.$idMarca.',"'.$fecha.'","'.$observacion.'");';
+
+
+
+     $result=mysqli_query($db, $sql);
+
+     return $result;  
+   }
+
+   public function guardarRecalmoSinServicio($idMarca,$observacion,$fecha){
+
+     $db=BaseDeDatos::conectarBD();
+    
+     $sql='insert into Reclamos ( Marcas_idMarcas, fecha, observacion) values ('.$idMarca.',"'.$fecha.'","'.$observacion.'");';
+
+
+
+     $result=mysqli_query($db, $sql);
+
+     return $result; 
+   }
+
+      public function guardarRecalmoSinMarca($idServicio,$observacion,$fecha){
+
+     $db=BaseDeDatos::conectarBD();
+    
+     $sql='insert into Reclamos ( Servicios_idServicios, fecha, observacion) values ('.$idServicio.',"'.$fecha.'","'.$observacion.'");';
+
+
+
+     $result=mysqli_query($db, $sql);
+
+     return $result; 
+   }
+   
 
     public function modificarNombreUsuario($nombreUsuario,$usuario1){
         
@@ -347,6 +398,39 @@ class Model_Usuario extends Model{
             $nombreTarjeta=($rows['nombre']);
             return  $nombreTarjeta;
             }
+   }
+
+   public function listaReclamosPorMarca($idMarca){
+        
+        $db=BaseDeDatos::conectarBD();
+
+        $sql= 'select * from Reclamos where Marcas_idMarcas like '.$idMarca.' order by fecha desc; ';
+      
+        $result=mysqli_query($db, $sql);
+
+        return $result;
+   }
+
+     public function listaReclamosPorServicio($idServicio){
+        
+        $db=BaseDeDatos::conectarBD();
+
+        $sql= 'select * from Reclamos where Servicios_idServicios like '.$idServicio.' order by fecha desc; ';
+       
+        $result=mysqli_query($db, $sql);
+
+        return $result;
+   }
+
+    public function listaReclamos($idServicio,$idMarca){
+        
+        $db=BaseDeDatos::conectarBD();
+
+        $sql= 'select * from Reclamos where Servicios_idServicios like '.$idServicio.' and Marcas_idMarcas like '.$idMarca.'  order by fecha desc; ';
+        
+        $result=mysqli_query($db, $sql);
+
+        return $result;
    }
 } 
 
